@@ -7,39 +7,34 @@
 //
 
 #include <iostream>
+#define MOD 15746
 using namespace std;
 
-unsigned long mem[1000001];
+unsigned long long int mem[1000001];
 
-unsigned long floor(int num){
-    if(mem[num]!=-1){
-        return mem[num];
+unsigned long long int floor(int num){
+    if(mem[num]!= -1){
+        return mem[num]%MOD;
     }else{
-        if(num==1){
-            mem[num]=1;
-            return mem[num];
-        }else if(num==2){
-            mem[num]=2;
+        if(num<3){
+            mem[num] = num;
             return mem[num];
         }else{
-            mem[num-1] = floor(num-1);
-            mem[num-2] = floor(num-2);
-            return mem[num-1]+mem[num-2];
+            mem[num-1] = floor(num-1)%MOD;
+            mem[num-2] = floor(num-2)%MOD;
+            mem[num] = mem[num-1]+mem[num-2];
+            return mem[num];
         }
     }
 }
 
 int main(int argc, const char * argv[]) {
-    fill_n(mem,1000000,-1);
+    fill_n(mem,1000001,-1);
     int num;
     cin>>num;
-    unsigned long res = floor(num);
-    cout<<res%15746<<endl;
-    
+    cout<<floor(num)%MOD<<endl;
 }
-// 1-> 1
-// 2-> 2
-// 3-> 001 , 100, 111 -> 3
-// 4 -> 0000, 0011, 1001, 1100, 1111 -> 5
-// 5 -> 00001, 00100, 10000, 00111, 10011, 11001, 11100, 11111 -> 8
+
 // n -> n-2+n-1;
+// n -> 두자리 빠진 길이에서 00 추가 + 한자리 빠진 길이에서 1 추가
+
