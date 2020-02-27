@@ -38,3 +38,7 @@ int main(int argc, const char * argv[]) {
     }
     cout<<dp[num][capacity]<<"\n";
 }
+
+
+// 참고 사이트
+// https://velog.io/@imacoolgirlyo/12865%EB%B2%88-%ED%8F%89%EB%B2%94%ED%95%9C-%EB%B0%B0%EB%82%AD-86k4cgn35m
